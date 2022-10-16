@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结构伪类选择器</title>
+    <!--格式： E:伪元素{声明；} -->
+    <!--伪元素:
+        first-child：E的父元素的第一个子元素
+        last-child：E的父元素的最后一个子元素
+        nth-child(n):E的父元素的第n个子元素
+        first-of-type：E的父元素内具有指定类型（E类型）的第一个子元素
+        last-of-type：E的父元素内具有指定类型（E类型）的最后一个子元素
+        nth-of-type(n)：E的父元素内具有指定类型（E类型）的第n个子元素-->
+
+    <!--:nth-child 与 :nth-of-type 的区别：
+    区别其实也很简单，E:nth-child(n) 是把所有子元素作为选择对象，选择其中的第n个子元素，
+    且这个子元素的类型必须是 E，如果不是，则选择失败。
+    而 E:nth-of-type(n) 则先把类型为E的所有子元素选择出来，从1开始编号，
+    然后把这些子元素作为选择对象，选择其中的第n个。-->
+
+    <style>
+        p:first-child{/*p的父元素下的第一个个子元素：p1、p4、p5、p6、p8、p9、p10*/
+            background: red;
+        }
+        p:last-child{/*p的父元素下的最后一个子元素：p11、p4、p5、p6、p8、p9、p10*/
+            background: orange;/*所以p4、p5、p6、p8、p9、p10先是红色又变成橙色*/
+        }
+        p:nth-child(4){/*p的父元素下的第四个子元素是ul,与p不符，所以选择失败*/
+            background: yellow;
+        }
+        p:nth-of-type(4){/*p的父元素下的类型为p的第四个子元素，p7*/
+            background: green;
+        }
+        ul:first-of-type{/*body下类型为ul的第一个子元素*/
+            background: cyan;
+        }
+        ul li:last-of-type{/*指定了父元素ul下的第一个li：p4、p8*/
+            background: blue;/*但是优先级不够，没有变化*/
+        }
+        .无序列表:nth-child(6){/*class值为无序列表的父元素（body）下的第六个元素，恰为ul类型*/
+            background: purple;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<p>p1</p>
+<p>p2</p>
+<p>p3</p>
+<ul class="无序列表">
+    <li>
+        <p>p4</p>
+    </li>
+    <li>
+        <p>p5</p>
+    </li>
+    <li>
+        <p>p6</p>
+    </li>
+</ul>
+<p id="reset">p7</p>
+<ul class="无序列表">
+    <li>
+        <p>p8</p>
+    </li>
+    <li>
+        <p>p9</p>
+    </li>
+    <li>
+        <p>p10</p>
+    </li>
+</ul>
+<p>p11</p>
+
+</body>
+</html>

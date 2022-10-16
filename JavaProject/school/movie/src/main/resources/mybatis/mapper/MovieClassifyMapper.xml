@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.movie.mapper.MovieClassifyMapper">
+
+    <resultMap id="movieClassifyResultMap" type="MovieClassify">
+        <id column="classify_id" property="classifyId"/>
+        <id column="classify_type" property="classifyType"/>
+        <id column="classify_did" property="classifyDid"/>
+    </resultMap>
+
+    <select id="selectAllByDid" resultMap="movieClassifyResultMap">
+        select * from movie_classify where classify_did = #{classifyDid}
+    </select>
+
+    <insert id="insertClassify" parameterType="MovieClassify">
+        insert into movie_classify(classify_id, classify_type, classify_did)
+        values (#{classifyId},#{classifyType},#{classifyDid})
+    </insert>
+
+    <update id="updateClassify">
+        update movie_classify set classify_type = #{classifyType}
+        where classify_did = #{classifyDid}
+    </update>
+
+</mapper>

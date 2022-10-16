@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.UserMapper">
+
+    <!--连接查询Map-->
+    <resultMap id="userResultMap" type="User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPwd"/>
+        <result column="user_realname" property="userRealName"/>
+        <result column="user_img" property="userImg"/>
+        <result column="detail_id" property="detail.detailId"/>
+        <result column="user_addr" property="detail.userAddr"/>
+        <result column="user_tel" property="detail.userTel"/>
+        <result column="user_desc" property="detail.userDesc"/>
+        <result column="uid" property="detail.userId"/>
+    </resultMap>
+
+    <!--子查询Map-->
+    <resultMap id="userResultMap2" type="User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPwd"/>
+        <result column="user_realname" property="userRealName"/>
+        <result column="user_img" property="userImg"/>
+        <!--association 调用子查询，关联查询一个对象并赋值到property属性中，子查询参数为column-->
+        <association property="detail" select="com.feng.mapper.DetailMapper.queryDetailByUid"
+                     column="user_id"/>
+    </resultMap>
+
+    <!--添加操作-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into users(user_name,user_pwd,user_realname,user_img)
+        values(#{userName},#{userPwd},#{userRealName},#{userImg})
+    </insert>
+
+    <!--简单查询所有-->
+    <select id="queryUser" resultMap="userResultMap">
+        select * from users where user_name=#{userName}
+    </select>
+
+    <!--一对一关联映射：连接查询-->
+    <select id="queryUserVsDetail" resultMap="userResultMap">
+        select *
+        from users u
+        inner join details d
+        on u.user_id=d.uid
+        where u.user_name=#{userName}
+    </select>
+
+    <!--一对一关联映射：子查询-->
+    <select id="queryUserVsDetail2" resultMap="userResultMap2">
+        select * from users where user_name=#{userName}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>例四</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background-image: url("../../Recourse/渐变背景.png");
+        }
+        #log{
+            position: absolute;
+            left: 650px;
+            top: 200px;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 50px 50px;
+            height: 220px;
+            width: 500px;
+            background-color: white;
+        }
+        form{
+            position: relative;
+        }
+        #welcome{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 7px;
+            left: 48px;
+            font-size: 35px;
+            font-family: "微软雅黑 Light";
+        }
+        a{
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+            left: 420px;
+            text-decoration: none;
+        }
+        a:hover{
+            color: aqua;
+            text-decoration: underline;
+        }
+        .email{
+            position: absolute;
+            top: 40px;
+            left: 50px;
+        }
+        .password{
+            display: inline-block;
+            position: absolute;
+            top: 80px;
+            left: 50px;
+        }
+        .longOn{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 140px;
+            left: 50px;
+        }
+        p{
+            display: inline-block;
+            font-size: larger;
+        }
+        .fill{
+            width: 310px;
+            height: 25px;
+            border: 2px solid black;
+        }
+        input[type="button"]{
+            width: 400px;
+            height: 40px;
+            border: 0;
+            background-color: darkcyan;
+        }
+        input[type="button"]:active{
+            background-color: #757275;
+        }
+        #kick{
+            font-size: large;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="log">
+    <form action="背景渐变">
+        <div id="welcome">欢迎登陆</div>
+        <div>
+            <a href="">立即注册</a>
+        </div>
+        <div class="email">
+            <p>用户名：</p>
+            <input type="email" class="fill" placeholder="请输入用户名">
+        </div>
+
+        <div class="password">
+            <p>密&emsp;码：</p>
+            <input type="password" class="fill" placeholder="请输入密码">
+        </div>
+
+        <div class="longOn">
+            <input type="button" id="kick" value="登录">
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

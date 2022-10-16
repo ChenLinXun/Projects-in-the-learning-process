@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--类型别名，该包下的类起别名，不区分大小写-->
+    <!--在SQL映射文件中，resultType属性可以不写该包下的全类名，只写类名即可-->
+    <!--交给Spring配置-->
+    <!--
+    <typeAliases>
+        <package name="com.feng.pojo"/>
+    </typeAliases>
+    -->
+
+    <!--数据源和连接池也交给Spring配置-->
+
+    <!--额外的配置，就仍在mybatis-config.xml中配置-->
+    <!--plugins标签：用于配置MyBatis插件（例如：分页插件）-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
+
+    <!--映射文件加载-->
+    <!--交给Spring配置-->
+    <!--
+    <mappers>
+        <package name="com.feng.mapper"/>
+    </mappers>
+    -->
+
+</configuration>

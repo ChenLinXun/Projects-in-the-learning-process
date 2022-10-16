@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="bookDao" class="com.feng.dao.BookDao"/>
+    <bean id="studentDao" class="com.feng.dao.StudentDao"/>
+
+    <bean id="txManager" class="com.feng.utils.txManager"/>
+    <bean id="myAspect" class="com.feng.utils.MyAspect"/>
+
+    <aop:config>
+
+        <!--声明切入点-->
+        <aop:pointcut id="book_update" expression="execution(* com.feng.dao.BookDao.update())"/>
+        <aop:pointcut id="book_insert" expression="execution(* com.feng.dao.BookDao.insert())"/>
+        <aop:pointcut id="student_allMethod" expression="execution(* com.feng.dao.StudentDao.*())"/>
+
+        <!--声明txManager为切面类-->
+        <aop:aspect ref="txManager">
+            <!--通知-->
+            <aop:before method="begin" pointcut-ref="book_update"/>
+            <aop:after method="commit" pointcut-ref="book_update"/>
+        </aop:aspect>
+
+        <!--声明txManager为切面类-->
+        <aop:aspect ref="txManager">
+            <!--通知-->
+            <aop:before method="begin" pointcut-ref="student_allMethod"/>
+            <aop:after method="commit" pointcut-ref="student_allMethod"/>
+        </aop:aspect>
+
+        <!--声明MyAspect为切面类-->
+        <aop:aspect ref="myAspect">
+            <!--aop:before 前置通知，切入到指定切入点之前-->
+            <aop:before method="method1" pointcut-ref="book_insert"/>
+
+            <!--aop:after 后置通知，切入到指定切入点之后-->
+            <aop:after method="method2" pointcut-ref="book_insert"/>
+
+            <!--aop:after-throwing 异常通知，切入到抛出异常之后-->
+            <aop:after-throwing method="method3" pointcut-ref="book_insert"/>
+
+            <!--aop:after-returning 返回通知，切入到返回值返回之后
+                和后置通知是同一时间点，谁配置在前面，谁的方法先执行
+            -->
+            <aop:after-returning method="method4" pointcut-ref="book_insert"/>
+
+            <!--aop:around 环绕通知，切点方法中的一部分切入到切入点前，另一部分切入到切入点后
+                采取环绕通知的切点方法，要遵守定义规则进行定义
+            -->
+            <aop:around method="method5" pointcut-ref="book_insert"/>
+        </aop:aspect>
+
+    </aop:config>
+
+</beans>

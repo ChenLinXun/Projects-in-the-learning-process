@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.movie.mapper.UserDetailsMapper">
+
+    <resultMap id="userAndDetailsResultMap" type="UserAndDetails">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_account" property="userAccount"/>
+        <result column="user_password" property="userPassword"/>
+        <result column="details_id" property="detailsId"/>
+        <result column="details_tel" property="detailsTel"/>
+        <result column="details_addr" property="detailsAddr"/>
+        <result column="details_desc" property="detailsDesc"/>
+    </resultMap>
+
+    <insert id="insertDetails" parameterType="UserDetails">
+        insert into user_details(details_id,details_uid)
+        values (#{detailsId},#{detailsUid})
+    </insert>
+
+    <select id="selectAllByUserId" resultMap="userAndDetailsResultMap">
+        select user_id,user_name,user_account,user_password,
+               details_id,details_tel,details_addr,details_desc
+        from users u
+        inner join user_details d
+        on u.user_id = d.details_uid
+        where d.details_uid = #{detailsUid}
+    </select>
+
+    <!--动态修改字段-->
+    <update id="updateDetails" parameterType="UserAndDetails">
+        update user_details d, users u
+        <set>
+            <if test="userName != null and userName != '' ">
+                u.user_name = #{userName},
+            </if>
+            <if test="userPassword != null and userPassword != '' ">
+                u.user_password = #{userPassword},
+            </if>
+            <if test="detailsTel != null and detailsTel != '' ">
+                d.details_tel = #{detailsTel},
+            </if>
+            <if test="detailsAddr != null and detailsAddr != '' ">
+                d.details_addr = #{detailsAddr},
+            </if>
+            <if test="detailsDesc != null and detailsDesc != '' ">
+                d.details_desc = #{detailsDesc},
+            </if>
+        </set>
+        where d.details_uid = u.user_id and details_id = #{detailsId}
+    </update>
+
+</mapper>

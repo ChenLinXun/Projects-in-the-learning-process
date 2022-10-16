@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.movie.mapper.UserMapper">
+
+    <insert id="insertUser" parameterType="User">
+        insert into users(user_id, user_name, user_account, user_password)
+        values (#{userId},#{userName},#{userAccount},#{userPassword})
+    </insert>
+
+    <select id="selectUserByName" parameterType="User" resultType="String">
+        select user_name from users where user_name = #{userName}
+    </select>
+
+    <select id="selectUserByAccount" parameterType="User" resultType="String">
+        select user_account from users where user_account = #{userAccount}
+    </select>
+
+    <select id="selectUserNameById" parameterType="User" resultType="String">
+        select user_name from users where user_id = #{userId}
+    </select>
+
+    <select id="selectUser"  parameterType="User" resultType="User">
+        select * from users
+        where user_account = #{userAccount} and user_password = #{userPassword}
+    </select>
+
+</mapper>

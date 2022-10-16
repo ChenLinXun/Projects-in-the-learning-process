@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "mycar",
+      "type": "com.feng.pojo.Car",
+      "sourceType": "com.feng.pojo.Car"
+    },
+    {
+      "name": "spring.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.feng.config.DataSourceConfig",
+      "sourceMethod": "dataSource()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mycar.name",
+      "type": "java.lang.String",
+      "sourceType": "com.feng.pojo.Car"
+    },
+    {
+      "name": "mycar.price",
+      "type": "java.lang.Integer",
+      "sourceType": "com.feng.pojo.Car"
+    }
+  ],
+  "hints": []
+}

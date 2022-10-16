@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.StudentMapper">
+
+    <!--使用二级缓存-->
+    <cache/>
+
+    <resultMap id="studentResultMap" type="Student">
+        <id column="sid" property="stuId"/>
+        <result column="sname" property="stuName"/>
+        <result column="sage" property="stuAge"/>
+        <result column="scid" property="stuCid"/>
+    </resultMap>
+
+    <!--根据cid查询所有-->
+    <select id="listStudentsByCid" resultMap="studentResultMap">
+        select * from students
+        where scid=#{stuCid}
+    </select>
+
+    <!--根据courseId查询所有，需要借助第三方表-->
+    <select id="listStudentsByCourseId" resultMap="studentResultMap">
+        select s.sid,s.sname,s.sage,s.scid
+        from students s inner join grades g
+        on s.sid=g.sid
+        where g.cid=#{courseId}
+    </select>
+</mapper>

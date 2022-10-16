@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--类型别名、数据源和连接池、映射文件加载，都交给Spring配置-->
+
+    <!--额外的配置，就仍在mybatis-config.xml中配置-->
+    <!--plugins标签：用于配置MyBatis插件（例如：分页插件）-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
+
+</configuration>

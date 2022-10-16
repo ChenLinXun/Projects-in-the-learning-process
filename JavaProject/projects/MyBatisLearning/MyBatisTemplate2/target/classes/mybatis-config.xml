@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--引入配置文件-->
+    <properties resource="jdbc.properties"/>
+
+    <!--开启二级缓存-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!--类型别名，该包下的类起别名，不区分大小写-->
+    <!--在SQL映射文件中，resultType属性可以不写该包下的全类名，只写类名即可-->
+    <typeAliases>
+        <package name="com.feng.pojo"/>
+    </typeAliases>
+
+    <!--plugins标签：用于配置MyBatis插件（例如：分页插件）-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
+
+    <!--可以配置多个数据库环境<environment>，通过default属性进行切换-->
+    <environments default="developmentByDruid">
+
+        <!--使用MyBatis内置连接池的environment-->
+        <environment id="development">
+            <transactionManager type="JDBC"/> <!--事务管理方式，以后由Spring接管-->
+            <!-- type="POOLED"：使用MyBatis内置的连接池实现-->
+            <dataSource type="POOLED"> <!--数据库连接池，以后由Spring接管-->
+                <!--数据库连接信息，以后由Spring接管-->
+                <property name="driver" value="${mysql_driver}"/>
+                <property name="url" value="${mysql_url}"/>
+                <property name="username" value="${mysql_username}"/>
+                <property name="password" value="${mysql_password}"/>
+            </dataSource>
+        </environment>
+
+        <!--使用Druid连接池的environment-->
+        <environment id="developmentByDruid">
+            <transactionManager type="JDBC"/>
+            <!--
+                dataSource：
+                MyBatis需要一个连接池工厂，而且必须是PooledDataSourceFactory类型的
+                MyBatis通过这个工厂获取数据库连接池，就是这个工厂中的dataSource属性
+                所以必须创建PooledDataSourceFactory的子类，修改其中的dataSource为DruidDataSource
+                而type属性的值，就是所创建的这个子类
+            -->
+            <dataSource type="com.feng.utils.DruidDataSourceFactory">
+                <!--Druid数据源命名规则：-->
+                <property name="driverClass" value="${mysql_driver}"/>
+                <property name="jdbcUrl" value="${mysql_url}"/>
+                <property name="username" value="${mysql_username}"/>
+                <property name="password" value="${mysql_password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--映射文件加载-->
+    <mappers>
+        <!--包扫描的方式加载sql映射文件-->
+        <!--使用该方法，这个目录下的所有映射文件都会被加载，而只需要一行代码，非常方便-->
+        <package name="com.feng.mapper"/>
+    </mappers>
+
+</configuration>

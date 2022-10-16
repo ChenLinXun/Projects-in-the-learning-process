@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>欢迎！</h1>
+<label style="color: red" th:text="${NotLoggedIn}"></label>
+<h2>POJO封装过程debug/返回Json的过程（包含参数类型转换，内容协商）</h2>
+<form action="/savePerson" method="post">
+    姓名<input name="personName" value="张三"> <br/>
+    年龄<input name="age" value="20"> <br/>
+    生日<input name="birth" value="2000/03/21"> <br/>
+    宠物姓名<input name="pet.name" value="小柴"> <br/>
+    宠物年龄<input name="pet.age" value="3"> <br/>
+    <input type="submit" value="提交查询">
+</form>
+
+<h2>测试基于请求参数的内容协商</h2>
+<a href="/savePerson?format=json">http://localhost:8080/savePerson?format=json</a>
+
+<h2>测试自定义Converter进行POJO封装</h2>
+<form action="/savePerson" method="post">
+    姓名<input name="personName" value="张三"> <br/>
+    年龄<input name="age" value="20"> <br/>
+    生日<input name="birth" value="2000/03/21"> <br/>
+    宠物<input name="pet" value="小柴,3"> <br/>
+    <input type="submit" value="提交查询">(公司自定义规则，不使用级联映射，对象参数中的属性用逗号分隔)
+</form>
+
+<h2>测试基于请求参数的自定义内容协商</h2>
+<a href="/savePerson?format=x-guigu">http://localhost:8080/savePerson?format=x-guigu</a>
+
+<h2>测试Thymeleaf模板引擎入门/视图解析原理</h2>
+<a href="/toLogin">去登录</a>
+
+<h2>文件上传</h2>
+<label style="color: red" th:text="${upload}"></label>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    用户名<input type="text"  value="张三" name="userName"/><br>
+    密码<input type="password" value="123" name="password"/><br>
+    用户头像<input type="file" name="userImageFile"/><br>
+    用户照片<input type="file" name="userPhotosFile" multiple/><br>
+    <input type="submit" value="提交"/>
+</form>
+
+<h2>mybatis整合测试，保存一个用户</h2>
+<form action="/saveUser" method="post" enctype="multipart/form-data">
+    用户名<input type="text"  value="张三" name="userName"/><br>
+    密码<input type="password" value="123" name="password"/><br>
+    用户头像<input type="file" name="userImageFile"/><br>
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>

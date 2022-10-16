@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+
+    <!--格式：选择器[attr=val]{声明;}  -->
+    <!--E[attr] 选择匹配具有属性attr的E元素
+        E[attr=val]  选择匹配具有属性attr的E元素,并且属性值为val（其中val区分大小写）
+        E[attr^=val] 选择匹配元素E，且E元素定义了属性attr，并且其属性值是以val开头的任意字符串
+        E[attr$=val] 选择匹配元素E，且E元素定义了属性attr，并且其属性值是以val结尾的任意字符串
+        E[attr*=val] 选择匹配元素E，且E元素定义了属性attr，并且其属性值包含了val，换句话说，
+                     字符串val与属性值中的任意位置相匹配-->
+    <style>
+        .demo a{
+            float: left;
+            display: block;
+            height: 50px;
+            width: 50px;
+            border-radius: 10px;
+            background: red;
+            text-align: center;
+            color: gainsboro;
+            text-decoration: none;
+            margin-right: 5px;
+            font: bold 20px / 50px Arial;
+        }
+        a[href="http://www.baidu.com"]{
+            background: blue;
+        }
+        a[href*="study"]{
+            background: green;
+        }
+        a[href^="images"]{
+            background: orange;
+        }
+        a[href$="pdf"]{
+            background: purple;
+        }
+        a[href$="doc"]{
+            background: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+<p class="demo">
+    <a href="http://www.baidu.com">1</a>
+    <a href="http://blog.study.com" target="_b1ank" title="test">2</a>
+    <a href="images/123.jpg">3</a>
+    <a href="images/123.png">4</a>
+    <a href="images/123.jpg">5</a>
+    <a href="abc">6</a>
+    <a href="/a.pdf">7</a>
+    <a href=" / abc.pdf">8</a>
+    <a href="abc.doc">9</a>
+    <a href="bcd.doc">10</a>
+</p>
+
+</body>
+</html>

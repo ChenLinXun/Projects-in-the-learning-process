@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.CourseMapper">
+
+    <!--连接查询Map-->
+    <resultMap id="courseResultMap" type="Course">
+        <id column="course_id" property="courseId"/>
+        <result column="course_name" property="courseName"/>
+        <collection property="students" ofType="Student">
+            <result column="sid" property="stuId"/>
+            <result column="sname" property="stuName"/>
+            <result column="sage" property="stuAge"/>
+            <result column="scid" property="stuCid"/>
+        </collection>
+    </resultMap>
+
+    <!--子查询Map-->
+    <resultMap id="courseResultMap2" type="Course">
+        <id column="course_id" property="courseId"/>
+        <result column="course_name" property="courseName"/>
+        <collection property="students"
+                    select="com.feng.mapper.StudentMapper.listStudentsByCourseId"
+                    column="course_id"/>
+    </resultMap>
+
+    <!--多对多关联映射：连接查询，需要借助第三方表-->
+    <select id="queryCourseWithStu" resultMap="courseResultMap">
+        select course_id,course_name,s.sid,s.sname,s.sage,s.scid
+        from courses c inner join grades g inner join students s
+        on c.course_id=g.cid and g.sid=s.sid
+        where c.course_id=#{courseId}
+    </select>
+
+    <!--一对多关联映射：子查询-->
+    <select id="queryCourseWithStu2" resultType="com.feng.pojo.Course">
+        select *
+        from courses
+        where course_id=#{courseId}
+    </select>
+</mapper>

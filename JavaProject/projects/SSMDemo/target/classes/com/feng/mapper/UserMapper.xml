@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.UserMapper">
+
+    <resultMap id="userMapper" type="com.feng.pojo.User">
+        <id column="user_id" property="userId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPassword"/>
+        <result column="user_realname" property="userRealName"/>
+        <result column="user_img" property="userImg"/>
+    </resultMap>
+
+    <select id="selectAllByUserName" resultMap="userMapper">
+        select * from users where user_name=#{userName}
+    </select>
+
+</mapper>

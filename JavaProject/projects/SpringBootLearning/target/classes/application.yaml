@@ -1,0 +1,70 @@
+
+#使用了yaml就可以不用properties了（两个都有，谁先加载，就用谁赋值）
+
+mycar:
+  name: BYD
+  price: 100000
+
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB #单个文件上传大小
+      max-request-size: 100MB #多个文件上传总大小
+
+  mvc:
+    contentnegotiation:
+      favor-parameter: true #开启基于请求参数的内容协商功能
+#    static-path-pattern: /static/** #静态资源访问前缀，会导致欢迎页 和 网站图标失效
+    hiddenmethod:
+      filter:
+        enabled: true #原生表单提交使用Restful风格
+#    servlet:
+#      path: /mvc/ #修改DispatcherServlet处理请求以 "/mvc/"开始的 (默认是"/"，不要乱改)
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Socialbigfeng321
+    url: jdbc:mysql://localhost:3306/springboot_learning
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#    旧的Druid配置方法：
+#    #Druid专有配置：
+#    #配置监控统计拦截的filters，stat:监控统计、wall：防御sql注入
+#    filters: stat,wall
+#    #连接池相关配置：
+#    initialSize: 5
+#    minIdle: 5
+#    maxActive: 20
+#    maxWait: 60000
+#    poolPreparedStatements: true
+
+    #使用starter整合Druid数据源的简洁方式：
+    druid:
+      aop-patterns: com.feng #Spring监控AOP切入点
+      filters: stat,wall #监控统计、防火墙（预防sql注入）
+      #监控页面开启
+      stat-view-servlet:
+        enabled: true
+        login-username: dlnu
+        login-password: 2019
+      #web-druid关联统计功能：
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.css,/druid/*,/jdbc/*'
+      #连接池相关配置：
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      pool-prepared-statements: true
+
+# mybatis设置
+mybatis:
+  type-aliases-package: com.feng.pojo #定义别名路径（sql映射文件的resultType属性就不用再写全类名）
+  mapper-locations: classpath:mybatis/mapper/*.xml #定义mapper的sql映射文件路径
+  configuration: #MyBatis全局配置
+    map-underscore-to-camel-case: true #开启驼峰命名自动映射，自动将数据库列名和pojo属性名映射（不用再写resultMap）

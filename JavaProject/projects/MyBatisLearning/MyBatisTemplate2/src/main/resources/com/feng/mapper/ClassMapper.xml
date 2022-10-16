@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.ClassMapper">
+
+    <!--连接查询Map-->
+    <resultMap id="classResultMap" type="Clazz">
+        <id column="cid" property="classId"/>
+        <result column="cname" property="className"/>
+        <result column="cdesc" property="classDesc"/>
+        <!--Clazz对象的stus属性是一个List集合，需要使用collection标签，ofType为元素类型-->
+        <collection property="stus" ofType="Student">
+            <result column="sid" property="stuId"/>
+            <result column="sname" property="stuName"/>
+            <result column="sage" property="stuAge"/>
+            <result column="scid" property="stuCid"/>
+        </collection>
+    </resultMap>
+
+    <!--子查询Map-->
+    <resultMap id="classResultMap2" type="Clazz">
+        <id column="cid" property="classId"/>
+        <result column="cname" property="className"/>
+        <result column="cdesc" property="classDesc"/>
+        <!--调用子查询，关联查询一个集合并赋值到property属性中，子查询参数为column-->
+        <!--设置该子查询的延迟加载：fetchType="lazy"-->
+        <collection property="stus" select="com.feng.mapper.StudentMapper.listStudentsByCid"
+                    column="cid" fetchType="lazy"/>
+    </resultMap>
+
+    <!--一对多关联映射：连接查询-->
+    <select id="queryClassWithStu" resultMap="classResultMap">
+        select *
+        from classes c
+        inner join students s
+        on c.cid=s.scid
+        where c.cname=#{className}
+    </select>
+
+    <!--一对多关联映射：子查询-->
+    <select id="queryClassWithStu2" resultMap="classResultMap2">
+        select *
+        from classes where cname=#{className}
+    </select>
+</mapper>

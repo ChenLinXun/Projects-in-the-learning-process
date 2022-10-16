@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.movie.mapper.MovieDataMapper">
+
+    <resultMap id="movieDataResultMap" type="MovieData">
+        <id column="data_id" property="dataId"/>
+        <result column="data_name" property="dataName"/>
+        <result column="data_desc" property="dataDesc"/>
+        <result column="data_score" property="dataScore"/>
+        <result column="data_country" property="dataCountry"/>
+        <result column="data_date" property="dataDate"/>
+        <result column="data_img" property="dataImg"/>
+    </resultMap>
+
+    <!--添加一条数据-->
+    <insert id="insertData" parameterType="MovieData">
+        insert into movie_data(data_id, data_name, data_desc, data_score, data_country, data_date,data_img)
+        values (#{dataId},#{dataName},#{dataDesc},#{dataScore},#{dataCountry},#{dataDate},#{dataImg})
+    </insert>
+
+    <!--删除一条数据-->
+    <delete id="deleteData">
+        delete from movie_data where data_id = #{dataId}
+    </delete>
+
+    <!--动态修改字段-->
+    <update id="updateData">
+        update movie_data
+        <set>
+            <if test="dataName != null and dataName != '' ">
+                data_name = #{dataName},
+            </if>
+            <if test="dataDesc != null and dataDesc != '' ">
+                data_desc = #{dataDesc},
+            </if>
+            <if test="dataScore != null and dataScore != '' ">
+                data_score = #{dataScore},
+            </if>
+            <if test="dataCountry != null and dataCountry != '' ">
+                data_country = #{dataCountry},
+            </if>
+            <if test="dataDate != null and dataDate != '' ">
+                data_date = #{dataDate},
+            </if>
+            <if test="dataImg != null and dataImg != '' ">
+                data_img = #{dataImg}
+            </if>
+        </set>
+        where data_id = #{dataId}
+    </update>
+
+    <!--查询全部信息-->
+    <select id="selectAllData" resultMap="movieDataResultMap">
+        select * from movie_data
+    </select>
+
+    <!--根据电影编号查询全部信息-->
+    <select id="selectAllByDataId" resultType="MovieData">
+        select * from movie_data where data_id = #{dataId}
+    </select>
+
+    <!--根据电影名查询信息-->
+    <select id="selectDataByName" resultMap="movieDataResultMap">
+        select * from movie_data where data_name like #{dataName}
+    </select>
+
+    <!--动态多条件查询若干条信息-->
+    <select id="selectDataByCondition" resultMap="movieDataResultMap">
+        select * from movie_data
+        <where>
+            <if test="dataName != null and dataName != '' ">
+                and data_name like #{dataName}
+            </if>
+            <if test="dataDesc != null and dataDesc != '' ">
+                and data_desc like #{dataDesc}
+            </if>
+            <if test="dataScore != null and dataScore != '' ">
+                and data_score = #{dataScore}
+            </if>
+            <if test="dataCountry != null and dataCountry != '' ">
+                and data_country like #{dataCountry}
+            </if>
+            <if test="dataDate != null and dataDate != '' ">
+                and data_date = #{dataDate}
+            </if>
+            <if test="dataImg != null and dataImg != '' ">
+                and data_img = #{dataImg}
+            </if>
+        </where>
+    </select>
+
+    <!--连接分类表查询若干条信息-->
+    <select id="selectDataJoinClassify" resultMap="movieDataResultMap">
+        select d.data_id, d.data_name, d.data_desc, d.data_score, d.data_country,
+               d.data_date, d.data_img
+        from movie_data d
+        inner join movie_classify c
+        on d.data_id = c.classify_did
+        <where>
+            <if test="dataClassifyType != null and dataClassifyType != '' ">
+                and c.classify_type = #{dataClassifyType}
+            </if>
+            <if test="dataName != null and dataName != '' ">
+                and d.data_name like #{dataName}
+            </if>
+            <if test="dataDesc != null and dataDesc != '' ">
+                and d.data_desc like #{dataDesc}
+            </if>
+            <if test="dataScore != null and dataScore != '' ">
+                and d.data_score = #{dataScore}
+            </if>
+            <if test="dataCountry != null and dataCountry != '' ">
+                and d.data_country like #{dataCountry}
+            </if>
+            <if test="dataDate != null and dataDate != '' ">
+                and d.data_date = #{dataDate}
+            </if>
+            <if test="dataImg != null and dataImg != '' ">
+                and d.data_img = #{dataImg}
+            </if>
+        </where>
+    </select>
+
+</mapper>

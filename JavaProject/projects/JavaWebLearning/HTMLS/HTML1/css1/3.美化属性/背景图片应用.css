@@ -1,0 +1,33 @@
+#bak{
+    width: 300px;
+    background-image: url("../../Recourse/手绘背景.jpg");
+    background-repeat: no-repeat;
+    background-size: 300px;
+
+}
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: 1em;
+    line-height: 35px;
+    background: aquamarine url("../../Recourse/手绘箭头.jpg")  255px  no-repeat;
+
+}
+
+ul li{
+    height: 30px;
+    list-style: none;
+    text-indent: 1em;
+}
+
+a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #000;
+}
+
+a:hover{
+    color: aqua;
+    text-decoration: underline;
+}

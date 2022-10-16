@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.feng.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPwd"/>
+        <result column="user_realname" property="userRealName"/>
+        <result column="user_img" property="userImg"/>
+    </resultMap>
+
+    <!--添加操作-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into users(user_name,user_pwd,user_realname,user_img)
+        values(#{userName},#{userPwd},#{userRealName},#{userImg})
+    </insert>
+
+    <select id="queryUsers" resultMap="userResultMap">
+        select * from users
+    </select>
+
+    <select id="queryByName" resultMap="userResultMap">
+        select * from users where user_name=#{userName}
+    </select>
+</mapper>

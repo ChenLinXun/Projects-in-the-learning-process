@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 对于一个xml文件，如果作为框架的配置文件，需要遵守框架的配置规则 -->
+    <!-- 通常一个框架为了让开发者能够正确的配置，都会提供xml的规范文件（dtd\xsd） -->
+    <!-- xsd形式引入规范文件的好处：可以按需扩展引入，也就是可以引入多个规范文件 -->
+
+    <!--id：类唯一标识
+        class：类的全限定名
+        property标签：为类实例赋值
+    -->
+    <bean id="tec" class="com.feng.ioc.bean.Teacher">
+        <property name="name" value="炼狱槙寿郎"/>
+        <property name="age" value="45"/>
+    </bean>
+
+    <!--set注入-->
+    <bean id="actor" class="com.feng.ioc.bean.Actor">
+        <property name="name" value="炼狱杏寿郎"/>
+        <property name="sex" value="男"/>
+        <property name="skill" value="炎之呼吸"/>
+        <property name="level" value="柱"/>
+        <property name="date">
+            <bean class="java.util.Date"/> <!--添加子标签bean来指定对象-->
+        </property>
+        <property name="teacher" ref="tec"/>
+    </bean>
+
+    <!--构造器注入-->
+    <bean id="date" class="java.util.Date"/>
+    <bean id="stu" class="com.feng.ioc.bean.Student">
+        <constructor-arg index="0" value="1001"/>
+        <constructor-arg index="2" value="女"/>
+        <constructor-arg index="1" value="张三"/>
+        <constructor-arg index="3" value="21"/>
+        <constructor-arg index="4" value="50.5"/>
+        <constructor-arg index="5" ref="date"/>
+        <constructor-arg index="6">
+            <bean class="com.feng.ioc.bean.Clazz">
+                <property name="clazzNum" value="03"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <!--bean的作用域-->
+    <bean id="book1" class="com.feng.ioc.bean.Book"/> <!--饿汉模式-->
+    <bean id="book2" class="com.feng.ioc.bean.Book" lazy-init="true"/> <!--懒汉模式-->
+    <bean id="book3" class="com.feng.ioc.bean.Book" scope="prototype"/> <!--非单例模式-->
+
+    <!--bean的声明周期方法-->
+    <bean id="book4" class="com.feng.ioc.bean.Book" scope="prototype"
+          init-method="init" destroy-method="destroy"/>
+
+    <!--自动装配-->
+    <bean id="teacher" class="com.feng.ioc.bean.Teacher"/>
+    <bean id="act" class="com.feng.ioc.bean.Actor" autowire="byName"/>
+
+    <bean id="clazz" class="com.feng.ioc.bean.Clazz"/>
+    <bean id="student" class="com.feng.ioc.bean.Student" autowire="byType"/>
+
+</beans>

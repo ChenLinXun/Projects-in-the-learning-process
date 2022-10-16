@@ -1,0 +1,294 @@
+
+<!--Hyper Text Markup Language
+    超文本标记语言-->
+
+<!-- 使用注释的快捷键是Ctrl + / -->
+
+<!-- !DOCTYPE：告诉浏览器，要使用什么规范 -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- head代表网页头部 -->
+<head>
+    <!-- meta描述性标签，用来描述网站的一些信息 -->
+    <!-- meta一般用来做SEO -->
+    <meta charset="UTF-8">
+
+    <!-- title代表网页标题 -->
+    <title>雨巷</title>
+
+</head>
+
+<!-- body代表网页主体 -->
+<body>
+
+<!-- 使用name作为锚标签的标记 -->
+<a name="top"></a>
+
+<a href="#bottom">跳至底部</a>
+
+<h1> 一级标签 </h1>
+<h2> 二级标签 </h2>
+<h3> 三级标签 </h3>
+<h4> 四级标签 </h4>
+<h5> 五级标签 </h5>
+
+<!--段落标签：p标签-->
+<!--strong是字体加强标签-->
+<p><strong>《雨巷》</strong></p>
+<p> 戴舒望 </p>
+<p> 撑着油纸伞，独自
+<p> 彷徨在悠长、悠长
+<p> 又寂寥的雨巷
+<p> 我希望逢着
+<p> 一个丁香一样的
+<p> 结着愁怨的姑娘</p>
+<!--div是块标签-->
+<div>=============</div>
+<p> 她是有
+<p> 丁香一样的颜色
+<p> 丁香一样的芬芳
+<p> 丁香一样的忧愁
+<p> 在雨中哀怨
+<p> 哀怨又彷徨
+<p> 她彷徨在这寂寥的雨巷
+<p> 撑着油纸伞
+<p> 像我一样
+<p> 像我一样地
+<p> 默默行着
+<p> 冷漠、凄清，又惆怅
+<div>=============</div>
+<p> 她静默地走近
+<p> 走近，又投出
+<p> 太息一般的眼光
+<p> 她飘过
+<p> 像梦一般的
+<p> 像梦一般的凄婉迷茫
+<p> 像梦中飘过
+<p> 一枝丁香地
+<p> 我身旁飘过这女郎
+<div>=============</div>
+<p> 她静默地远了、远了
+<p> 到了颓圮的篱墙
+<p> 走尽这雨巷
+<p> 在雨的哀曲里
+<p> 消了她的颜色
+<p> 散了她的芬芳
+<p> 消散了，甚至她的
+<p> 太息般的眼光
+<p> 丁香般的惆怅
+<div>=============</div>
+<p> 撑着油纸伞，独自
+<p> 彷徨在悠长、悠长
+<p> 又寂寥的雨巷
+<p> 我希望飘过
+<p> 一个丁香一样的
+<p> 结着愁怨的姑娘</p>
+
+<!--a标签是超链接标签，href值可以是希望跳转到的一个网址，target的值是跳转网址显示的位置-->
+<!--img是图像标签，可以放上一张图片，alt是找不到图片时显示的文字，title是鼠标悬停在图片上时显示的文字-->
+<p>
+<!--把一个图片套在a标签里面，点击图片进行跳转-->
+    <a href="https://baike.baidu.com/item/%E9%9B%A8%E5%B7%B7/1499166?fr=aladdin">
+    <img src="../Recourse/雨中姑娘.jpg" alt="姑娘" title="一个丁香一样的结着愁怨的姑娘" width="1125" height="2000" >
+   </a>
+
+    <a href="https://baike.baidu.com/item/%E9%9B%A8%E5%B7%B7/1499166?fr=aladdin" target="_blank">查看戴舒望-《雨巷》</a>
+</p>
+
+<!--iframe：内联框架
+    src：显示的内容
+    name：锚标签标记-->
+<iframe src="" name="雨巷" frameborder="0" width="1000px" height="800px"></iframe>
+<!--使用锚标签把跳转到的网址内容显示在标记处，也就是iframe内联框架里面-->
+<a href="https://baike.baidu.com/item/%E9%9B%A8%E5%B7%B7/1499166?fr=aladdin" target="雨巷">在这里查看戴舒望-《雨巷》</a>
+
+<!--br是换行标签-->
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--ol：有序列表标签
+    有序的：orderly-->
+<ol>
+    <li>1.JavaSE基础和高级</li>
+    <li>2.MySQL数据库基础</li>
+    <li>3.Web前端基础</li>
+</ol>
+
+<!--hr：生成分割线标签-->
+<hr>
+
+<!--ul：无序列表标签
+    无序的：unordered-->
+<ul>
+    <li>1.JavaSE基础和高级</li>
+    <li>2.MySQL数据库基础</li>
+    <li>3.Web前端基础</li>
+</ul>
+
+<hr>
+<!--dl：自定义列表：
+dt：列表名称
+dd：列表内容
+    定义：define-->
+<dl>
+    <dt>正在努力学习的：</dt>
+    <dd>1.JavaSE基础和高级</dd>
+    <dd>2.MySQL数据库基础</dd>
+    <dd>3.Web前端基础</dd>
+</dl>
+
+<hr>
+<!--table:表格标签
+    行：tr
+    列：td
+    border：增加边框-->
+<table border="1px">
+    <tr>
+        <td>正在努力学习的：</td>
+        <td>学习进度：</td>
+    </tr>
+    <tr>
+        <td>1.JavaSE基础和高级</td>
+        <td>需加强集合、反射、多线程学习</td>
+    </tr>
+    <tr>
+        <td>2.MySQL数据库基础</td>
+        <td>需进一步系统学习</td>
+    </tr>
+    <tr>
+        <td>3.Web前端基础</td>
+        <td>需跟紧学校进度，不拘一格</td>
+    </tr>
+</table>
+
+<hr>
+<!--colspan：跨列
+    rowspan：跨行-->
+<table border="2px">
+    <tr>
+        <td colspan="3">学期成绩单</td>
+    </tr>
+    <tr>
+        <td>类型</td>
+        <td>科目</td>
+        <td>成绩</td>
+    </tr>
+    <tr>
+        <td rowspan="2">必修</td>
+        <td>C语言程序课程设计</td>
+        <td>98</td>
+    </tr>
+    <tr>
+        <td>数字逻辑与数字系统</td>
+        <td>91</td>
+    </tr>
+    <tr>
+        <td rowspan="2">选修</td>
+        <td>C++程序设计</td>
+        <td>80</td>
+    </tr>
+</table>
+
+<hr>
+<!--表单form：
+    action：表单提交的位置，可以是网站，也可以是一个请求处理地址
+    method：post, get 提交方式
+    get：可以在url中看到提交信息，不安全，高效
+    post：比较安全，传输大文件
+    input标签：
+    根据属性type的不同，有多种元素类型
+    select标签：
+    是一个下拉框
+    option标签：
+    包含在select下，作为一个选项-->
+<form action="HelloWorldWeb.html" method="post">
+    <p>
+        <!--初级验证：
+            placeholder：占位符，提示信息 required：必须的，必填项-->
+        账号：<input type="text" name="username" placeholder="请输入账号" required>
+    </p>
+    <p>
+        密码：<input type="password" name="pwd" placeholder="请输入密码" required>
+    </p>
+
+<!--radio：单选框 每个单选框必须要有值value
+    value：单选框的值，必须要有值
+    name相同的为一个组，一个组里的单选框一次只能勾选一个-->
+    <p>
+        性别：
+        男<input type="radio" value=boy name="sex">
+        女<input type="radio" value=girl name="sex">
+    </p>
+
+<!--checkbox：多选框 每个多选框必须要有值value
+    value：多选框的值，必须要有值
+    name相同的为一个组，一个组的多选框一次可以勾选多个-->
+    <p>
+        爱好：
+        打代码<input type="checkbox" value="code" name="hobby">
+        打篮球<input type="checkbox" value="basketball" name="hobby">
+        打游戏<input type="checkbox" value="video game" name="hobby">
+    </p>
+
+<!--按钮：
+    input type="button" 普通按钮
+    input type="image"  图像按钮，点击提交表单
+    input type="submit" 提交按钮
+    input type="reset"  重置按钮-->
+    <p>
+        点击变长：<input type="button" value="点击变长" name="bt1">
+        <input type="image" src="../Recourse/雨中姑娘.jpg" width="100" height="100">
+    </p>
+
+<!--select标签：下拉框
+    option标签：选项-->
+    <p>
+        国家：<select name="国家">
+            <option value="China" selected>中国</option>
+            <option value="American">美国</option>
+            <option value="Russia">俄罗斯</option>
+        </select>
+    </p>
+
+<!--input type="email"：邮箱框，自带初级邮箱验证，比较low，不用-->
+    <!--
+    <p>
+        <input type="email" name="email">
+    </p>
+    -->
+
+<!--自定义一个邮箱填写框，使用pattern正则表达式验证-->
+    <p>
+        邮箱：<input type="text" name="email" pattern=\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*>
+    </p>
+
+<!--textarea标签：文本域-->
+    <p>
+       反馈：<textarea name="textarea" cols="30" rows="10"></textarea>
+    </p>
+
+<!--input标签file元素：
+    文件域，可以提交一个文件-->
+    <p>
+        <input type="file" name="files">
+    </p>
+
+    <p>
+        <input type="submit">
+        <input type="reset">
+    </p>
+
+</form>
+
+<!-- href值可以是之前设置的一个标记，这样就是一个锚标签，回到标记点top -->
+<a href="#top">回到顶部</a>
+
+<a name="bottom"></a>
+</body>
+
+</html>

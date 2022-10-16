@@ -1,0 +1,4 @@
+com\feng\mapper\UserMapper.class
+com\feng\mapper\BrandMapper.class
+com\feng\pojo\Brand.class
+com\feng\pojo\User.class

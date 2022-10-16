@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.movie.mapper.MovieCommentMapper">
+
+    <resultMap id="movieCommentResultMap" type="MovieComment">
+        <id column="comment_id" property="commentId"/>
+        <result column="comment_desc" property="commentDesc"/>
+        <result column="comment_user" property="commentUser"/>
+        <result column="comment_movie" property="commentMovie"/>
+        <result column="comment_username" property="commentUsername"/>
+    </resultMap>
+
+    <insert id="insertComment" parameterType="MovieComment">
+        insert into
+            movie_comment(comment_id, comment_desc, comment_user, comment_movie, comment_username)
+        values (#{commentId},#{commentDesc},#{commentUser},#{commentMovie},#{commentUsername})
+    </insert>
+
+    <delete id="deleteComment">
+        delete from movie_comment where comment_id = #{commentId}
+    </delete>
+
+    <select id="selectAllByDataId" resultMap="movieCommentResultMap">
+        select * from movie_comment where comment_movie = #{dataId}
+    </select>
+    
+    <update id="updateCommentUserNameByUserId" parameterType="MovieComment">
+        update movie_comment
+        set comment_username = #{commentUsername}
+        where comment_user = #{commentUser}
+    </update>
+
+</mapper>
