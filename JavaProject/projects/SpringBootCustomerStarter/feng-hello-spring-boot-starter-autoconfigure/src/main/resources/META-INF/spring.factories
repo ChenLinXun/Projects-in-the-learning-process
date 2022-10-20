@@ -1,0 +1,3 @@
+# 定义springboot自动加载哪个自动配置类
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.feng.hello.auto.HelloServiceAutoConfiguration

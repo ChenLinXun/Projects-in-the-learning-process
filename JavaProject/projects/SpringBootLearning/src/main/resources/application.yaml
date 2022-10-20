@@ -1,6 +1,7 @@
 
 #使用了yaml就可以不用properties了（两个都有，谁先加载，就用谁赋值）
 
+
 mycar:
   name: BYD
   price: 100000
@@ -8,7 +9,18 @@ mycar:
 server:
   port: 8080
 
+#自定义starter配置项：
+feng:
+  hello:
+    prefix: '你好'
+    suffix: '欢迎访问'
+
 spring:
+#  profiles:
+#    active: prod #指定激活的环境
+  profiles:
+    include:
+
   servlet:
     multipart:
       max-file-size: 10MB #单个文件上传大小

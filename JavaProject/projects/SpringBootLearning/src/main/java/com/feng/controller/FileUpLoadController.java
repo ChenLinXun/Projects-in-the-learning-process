@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 
@@ -69,6 +68,6 @@ public class FileUpLoadController {
             }
         }
         model.addAttribute("upload","上传成功!");
-        return "index";
+        return "indexController";
     }
 }

@@ -7,13 +7,13 @@ com\feng\pojo\User.class
 com\feng\service\UserService.class
 META-INF\spring-configuration-metadata.json
 com\feng\mapper\UserMapper.class
+com\feng\controller\IndexController.class
 com\feng\config\DataSourceConfig.class
 com\feng\service\impl\UserServiceImpl.class
 com\feng\controller\FileUpLoadController.class
-com\feng\controller\Index.class
 com\feng\interceptor\LoginInterceptor.class
 com\feng\interceptor\TestInterceptor2.class
-com\feng\controller\Hello.class
+com\feng\controller\HelloController.class
 com\feng\WebServlet\MyServlet.class
 com\feng\config\WebConfig.class
 com\feng\interceptor\TestInterceptor1.class
