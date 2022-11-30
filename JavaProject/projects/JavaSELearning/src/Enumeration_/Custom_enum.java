@@ -49,7 +49,7 @@ class Season{
         return desc;
     }
 
-    public Season(String season, String desc) {
+    private Season(String season, String desc) {
         this.season = season;
         this.desc = desc;
     }

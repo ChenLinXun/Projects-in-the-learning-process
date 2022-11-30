@@ -49,6 +49,7 @@ public class Difference {
 
         String s1 = new String("hello");
         String s2 = "hello";
+
         System.out.println("s1 和 s2 指向同一个对象："+(s1 == s2));//false
         System.out.println("s1在字符串池中的引用和s2的引用相同："+(s1.intern() == s2));//true
         System.out.println("==========================================");
